@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -73,5 +74,25 @@ class MainTest {
         String expectedConsoleOutput = "Product already exists.";
 
         assertEquals(expectedConsoleOutput, result);
+    }
+
+    @Test
+    void updateProductWithSameProductWithDifferentQuantity() {
+        String testKey = "Milk";
+        int testValue = 30;
+        int newValue = 50;
+
+        hashmapEntry.put(testKey, testValue);
+        inventory.addProduct(hashmapEntry);
+
+        HashMap<String, Integer> newEntry = new HashMap<>();
+        newEntry.put(testKey, newValue);
+
+        String result = inventory.updateProduct(newEntry);
+        String expectedConsoleOutput = "Stock updated!";
+
+        int inputtedValue = Main.items.get(testKey);
+        assertEquals(expectedConsoleOutput, result);
+        assertEquals(newValue, inputtedValue);
     }
 }
