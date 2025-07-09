@@ -24,6 +24,7 @@ class MainTest {
         inventory = new Inventory();
         hashmapEntry = new HashMap<>();
         System.setOut(new PrintStream(outputStream));
+        Main.items = new HashMap<>();
     }
 
     @AfterEach
@@ -94,5 +95,20 @@ class MainTest {
         int inputtedValue = Main.items.get(testKey);
         assertEquals(expectedConsoleOutput, result);
         assertEquals(newValue, inputtedValue);
+    }
+
+    @Test
+    void checkProductExistingProduct() {
+        String testKey = "Milk";
+        int testQuantity = 20;
+
+        hashmapEntry.put(testKey, testQuantity);
+        inventory.addProduct(hashmapEntry);
+        inventory.checkProduct(testKey);
+
+        String output = outputStream.toString();
+        String expectedOutput = testKey + " is in stock: " + testQuantity;
+
+        assertTrue(output.contains(expectedOutput));
     }
 }
