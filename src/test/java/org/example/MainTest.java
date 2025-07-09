@@ -36,7 +36,6 @@ class MainTest {
         int expectedValue = 30;
 
         hashmapEntry.put(expectedKey, expectedValue);
-
         inventory.addProduct(hashmapEntry);
         int actualValue = Main.items.get(expectedKey);
 
@@ -54,8 +53,25 @@ class MainTest {
         inventory.addProduct(hashmapEntry);
 
         String output = outputStream.toString();
-        System.out.println("Test output: " + output);
 
         assertTrue(output.contains(expectedConsoleOutput));
+    }
+
+    @Test
+    void addProductThatAlreadyExist() {
+        String testKey = "Milk";
+        int testValue = 30;
+
+        hashmapEntry.put(testKey, testValue);
+        inventory.addProduct(hashmapEntry);
+
+        int newValue = 20;
+        HashMap<String, Integer> newEntry = new HashMap<>();
+        newEntry.put(testKey, newValue);
+
+        String result = inventory.addProduct(newEntry);
+        String expectedConsoleOutput = "Product already exists.";
+
+        assertEquals(expectedConsoleOutput, result);
     }
 }
