@@ -120,9 +120,12 @@ class Inventory extends Main implements InventoryFunctions {
 
     @Override
     public void checkProduct(String productToSearch) {
-        items.entrySet().stream()
-                .filter(s -> Objects.equals(s.getKey().toLowerCase(), productToSearch.toLowerCase()))
-                .forEach(s -> System.out.println(s.getKey() + " is in stock" + ": " + s.getValue()));
+        if (items.containsKey(productToSearch)) {
+            items.entrySet().stream()
+                    .filter(s -> Objects.equals(s.getKey().toLowerCase(), productToSearch.toLowerCase()))
+                    .forEach(s -> System.out.println(s.getKey() + " is in stock" + ": " + s.getValue()));
+        } else System.out.println("Product not found.");
+
     }
 
     @Override

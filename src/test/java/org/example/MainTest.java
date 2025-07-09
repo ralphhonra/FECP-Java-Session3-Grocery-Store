@@ -111,4 +111,20 @@ class MainTest {
 
         assertTrue(output.contains(expectedOutput));
     }
+
+    @Test
+    void checkProductThatDoesNotExist() {
+        String testKey = "Milk";
+        int testQuantity = 20;
+        String newKey = "Ice Cream";
+
+        hashmapEntry.put(testKey, testQuantity);
+        inventory.addProduct(hashmapEntry);
+        inventory.checkProduct(newKey);
+
+        String output = outputStream.toString();
+        String expectedOutput = "Product not found.";
+
+        assertTrue(output.contains(expectedOutput));
+    }
 }
