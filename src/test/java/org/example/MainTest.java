@@ -144,4 +144,16 @@ class MainTest {
         int checkNewAmount = Main.items.get(testKey);
         assertEquals(newQuantity, checkNewAmount);
     }
+
+    @Test
+    void updateProductNonExistingProduct() {
+        String testKey = "Tofu";
+        int testAmount = 20;
+
+        hashmapEntry.put(testKey, testAmount);
+        String result = inventory.updateProduct(hashmapEntry);
+        String expectedOutput = "Product not found.";
+
+        assertTrue(result.contains(expectedOutput));
+    }
 }

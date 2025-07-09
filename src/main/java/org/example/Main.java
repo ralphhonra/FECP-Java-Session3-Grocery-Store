@@ -53,7 +53,6 @@ public class Main {
     static void updateProduct() {
         System.out.print("Enter product name to update: ");
         String productToUpdate = input.nextLine();
-        System.out.print("Enter new stock quantity: ");
         int newProductQuantity = verifyNumber();
 
         HashMap<String, Integer> itemUpdate = new HashMap<>();
@@ -131,9 +130,12 @@ class Inventory extends Main implements InventoryFunctions {
     @Override
     public String updateProduct(HashMap<String, Integer> productInformation) {
         Map.Entry<String, Integer> item = productInformation.entrySet().iterator().next();
-        items.replace(item.getKey(), item.getValue());
 
-        return "Stock updated!";
+        if (items.containsKey(item.getKey())) {
+            items.replace(item.getKey(), item.getValue());
+
+            return "Stock updated!";
+        } else return "Product not found.";
     }
 
     @Override
