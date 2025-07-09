@@ -127,4 +127,21 @@ class MainTest {
 
         assertTrue(output.contains(expectedOutput));
     }
+
+    @Test
+    void updateProductWithValidQuantity() {
+        String testKey = "Bread";
+        int testQuantity = 20;
+        int newQuantity = 25;
+
+        hashmapEntry.put(testKey, testQuantity);
+        inventory.addProduct(hashmapEntry);
+
+        HashMap<String, Integer> newEntry = new HashMap<>();
+        newEntry.put(testKey, newQuantity);
+        inventory.updateProduct(newEntry);
+
+        int checkNewAmount = Main.items.get(testKey);
+        assertEquals(newQuantity, checkNewAmount);
+    }
 }
