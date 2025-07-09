@@ -140,9 +140,11 @@ class Inventory extends Main implements InventoryFunctions {
 
     @Override
     public String removeProduct(String itemToRemove) {
-        items.remove(itemToRemove);
+        if (items.containsKey(itemToRemove)) {
+            items.remove(itemToRemove);
 
-        return "Product removed.";
+            return "Product removed.";
+        } else return "Product not found.";
     }
 
     @Override

@@ -170,5 +170,20 @@ class MainTest {
         String result = inventory.removeProduct(testKey);
 
         assertTrue(result.contains(expectedOutput));
+
+        String resultAfterDeleting = inventory.removeProduct(testKey);
+        String expectedOutputAfterDeleting = "Product not found.";
+
+        assertTrue(resultAfterDeleting.contains(expectedOutputAfterDeleting));
+    }
+
+    @Test
+    void removeProductRemoveProductThatDoesNotExist() {
+        String testKey = "Pizza";
+
+        String result = inventory.removeProduct(testKey);
+        String expectedOutput = "Product not found.";
+
+        assertTrue(result.contains(expectedOutput));
     }
 }
