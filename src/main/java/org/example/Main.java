@@ -75,7 +75,7 @@ public class Main {
                 System.out.print("Enter quantity: ");
                 productQuantity = Integer.parseInt(input.nextLine());
 
-                if (productQuantity < 0) System.out.println("\nInput cannot be a negative number\n");
+                if (productQuantity <= 0) System.out.println("\nInput cannot be a zero or negative number\n");
                 else break;
             } catch (Exception err) {
                 System.out.println("\nInvalid Input\n");
@@ -102,6 +102,15 @@ class Inventory extends Main implements InventoryFunctions {
     @Override
     public String addProduct(HashMap<String, Integer> productInformation) {
         Map.Entry<String, Integer> addedProduct = productInformation.entrySet().iterator().next();
+
+        //  For test case only
+        int quantity = addedProduct.getValue();
+        if (quantity <= 0) {
+            System.out.println("Input cannot be a zero or negative number");
+            return "";
+        }
+        //
+
         if (items.containsKey(addedProduct.getKey())) return "Product already exists.";
         else {
             items.put(addedProduct.getKey(), addedProduct.getValue());
