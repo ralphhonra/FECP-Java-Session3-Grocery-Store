@@ -156,4 +156,19 @@ class MainTest {
 
         assertTrue(result.contains(expectedOutput));
     }
+
+
+    @Test
+    void removeProductRemoveValidEntry() {
+        String testKey = "Milk";
+        int testQuantity = 20;
+
+        hashmapEntry.put(testKey, testQuantity);
+        inventory.addProduct(hashmapEntry);
+
+        String expectedOutput = "Product removed.";
+        String result = inventory.removeProduct(testKey);
+
+        assertTrue(result.contains(expectedOutput));
+    }
 }
