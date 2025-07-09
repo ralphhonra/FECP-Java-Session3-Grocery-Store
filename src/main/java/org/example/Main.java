@@ -23,6 +23,7 @@ public class Main {
                 case 3 -> checkProduct();
                 case 4 -> updateProduct();
                 case 5 -> removeProduct();
+                case 6 -> System.out.println("Exiting system...");
             }
         }
     }
